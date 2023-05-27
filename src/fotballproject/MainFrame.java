@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends JFrame {
-	// Test
+	// Test2
 	private JPanel contentPane;	
 	
 	/**
