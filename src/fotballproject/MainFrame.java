@@ -1,5 +1,5 @@
 package fotballproject;
-
+// 테스트
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,11 +14,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends JFrame {
-	// Test
-	private JPanel contentPane;	
-	
+
+	private JPanel contentPane;
+
 	/**
-	 *Launch the application.
+	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
