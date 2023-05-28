@@ -53,6 +53,7 @@ public class Stadium extends JFrame implements ActionListener {
 //시발
    //sex섹스
    //제발 푸쉬떠줘
+   	//수정
    public Stadium() {
    	getContentPane().setBackground(new Color(255, 255, 255));
       getContentPane().setFont(new Font("맑은 고딕", Font.BOLD, 12));
