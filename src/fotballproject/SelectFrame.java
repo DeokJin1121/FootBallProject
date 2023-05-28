@@ -92,6 +92,7 @@ public class SelectFrame extends JFrame {
 		JLabel lblLogo = new JLabel("New label");
 		lblLogo.setBounds(0, 0, 71, 71);
 		contentPane.add(lblLogo);
+		
 		ImageIcon daicon1 = new ImageIcon("image/mancity5.png");
 		Image daimage1 = daicon1.getImage();
 		Image daimage3 = daimage1.getScaledInstance(71, 71, Image.SCALE_SMOOTH);
