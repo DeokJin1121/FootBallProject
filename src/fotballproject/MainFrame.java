@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends JFrame {
-	// Test2
+	// 브렌치 테스트
 	private JPanel contentPane;
 
 	/**
