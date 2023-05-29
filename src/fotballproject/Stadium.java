@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -68,16 +70,16 @@ public class Stadium extends JFrame implements ActionListener {
       int i = 0;
       
       btnBefore = new JButton("이전");
-      btnBefore.setBounds(381, 437, 71, 35);
+      btnBefore.setBounds(381, 450, 71, 35);
       getContentPane().add(btnBefore);
       btnBefore.addActionListener(this);
       
       btnNext = new JButton("다음");
-      btnNext.setBounds(381, 482, 71, 35);
+      btnNext.setBounds(381, 492, 71, 35);
       getContentPane().add(btnNext);
       btnNext.addActionListener(this);
       
-      lblstadium = new JLabel("경기장사진");
+      lblstadium = new JLabel("");
       ImageIcon ethihadImg = new ImageIcon(Stadium.class.getResource("/fotballproject/에티하드.jpg"));
       ImageIcon anfieldImg = new ImageIcon(Stadium.class.getResource("/fotballproject/안필드.jpg"));
       ImageIcon emirateImg = new ImageIcon(Stadium.class.getResource("/fotballproject/에미레이츠.jpg"));
@@ -92,7 +94,7 @@ public class Stadium extends JFrame implements ActionListener {
       stadiumImgBin[4] = stamfordImg;
       
       lblstadium.setIcon(stadiumImgBin[i]);
-      lblstadium.setBounds(26, 100, 407, 283);
+      lblstadium.setBounds(46, 100, 387, 268);
       getContentPane().add(lblstadium);
       
       String ethihadName = "  [에티하드 스타디움]";
@@ -110,9 +112,9 @@ public class Stadium extends JFrame implements ActionListener {
       
       stadiumName = new JTextArea();
       stadiumName.setEditable(false);
-      stadiumName.setFont(new Font("Monospaced", Font.BOLD, 18));
+      stadiumName.setFont(new Font("Monospaced", Font.BOLD, 16));
       stadiumName.setText(stadiumNameBin[i]);
-      stadiumName.setBounds(26, 420, 343, 26);
+      stadiumName.setBounds(46, 390, 323, 21);
       getContentPane().add(stadiumName);
       
       String ethihadInfo = "  구단 : 맨체스터 시티\r\n  최대 관중인원 : 53400명\r\n  완공 : 2003년 08월 10일";
@@ -132,7 +134,7 @@ public class Stadium extends JFrame implements ActionListener {
       stadiumInfo.setEditable(false);
       stadiumInfo.setFont(new Font("Monospaced", Font.BOLD | Font.ITALIC, 17));
       stadiumInfo.setText(stadiumInfoBin[i]);
-      stadiumInfo.setBounds(26, 453, 343, 79);
+      stadiumInfo.setBounds(46, 450, 323, 79);
       getContentPane().add(stadiumInfo);
       
       JLabel lblNewLabel_4_4 = new JLabel("스탬퍼드");
@@ -227,6 +229,28 @@ public class Stadium extends JFrame implements ActionListener {
       lblNewLabel_6_2.setBounds(189, 56, 120, 15);
       getContentPane().add(lblNewLabel_6_2);
       
+      JLabel lineStadium = new JLabel("");
+      lineStadium.setBounds(472, 43, 133, 482);
+      getContentPane().add(lineStadium);
+      TitledBorder titledBorder = new TitledBorder(new LineBorder(Color.BLACK,1));
+      titledBorder.setTitleFont(new Font("Decodig", Font.PLAIN, 20));
+      lineStadium.setBorder(titledBorder);
+      
+      JLabel lblInfo = new JLabel("");
+      lblInfo.setBounds(36, 427, 424, 118);
+      getContentPane().add(lblInfo);
+      lblInfo.setBorder(titledBorder);
+      
+      JLabel lblStadimName = new JLabel("");
+      lblStadimName.setBounds(36, 383, 424, 35);
+      getContentPane().add(lblStadimName);
+      lblStadimName.setBorder(titledBorder);
+      
+      JLabel lblImageLine = new JLabel("");
+      lblImageLine.setBounds(38, 100, 424, 268);
+      getContentPane().add(lblImageLine);
+      lblImageLine.setBorder(titledBorder);
+      
       setVisible(true);
    }
    
@@ -251,22 +275,27 @@ public class Stadium extends JFrame implements ActionListener {
         	 lblstadium.setIcon(stadiumImgBin[0]);
              stadiumName.setText(stadiumNameBin[0]);
              stadiumInfo.setText(stadiumInfoBin[0]);
+             i = 0;
          }	else if(obj == btnAnfield) {
         	 lblstadium.setIcon(stadiumImgBin[1]);
              stadiumName.setText(stadiumNameBin[1]);
              stadiumInfo.setText(stadiumInfoBin[1]);
+             i = 1;
          }	else if(obj == btnEmirates) {
         	 lblstadium.setIcon(stadiumImgBin[2]);
              stadiumName.setText(stadiumNameBin[2]);
              stadiumInfo.setText(stadiumInfoBin[2]);
+             i = 2;
          }	else if(obj == btnTrafford) {
         	 lblstadium.setIcon(stadiumImgBin[3]);
              stadiumName.setText(stadiumNameBin[3]);
              stadiumInfo.setText(stadiumInfoBin[3]);
+             i = 3;
          }	else if(obj == btnStamford) {
         	 lblstadium.setIcon(stadiumImgBin[4]);
              stadiumName.setText(stadiumNameBin[4]);
              stadiumInfo.setText(stadiumInfoBin[4]);
+             i = 4;
          }
-      }
+     }
 }
