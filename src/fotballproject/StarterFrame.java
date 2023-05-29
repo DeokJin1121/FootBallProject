@@ -41,10 +41,7 @@ public class StarterFrame extends JFrame implements ActionListener {
 	private JPanel Edgepanel2;
 	private JPanel panCenter;
 	private JPanel Edgepanel;
-
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -58,9 +55,6 @@ public class StarterFrame extends JFrame implements ActionListener {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public StarterFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
