@@ -40,9 +40,9 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(-13, 0, 121, 96);
-		contentPane.add(lblNewLabel);
+		JLabel lblLogo = new JLabel();
+		lblLogo.setBounds(-13, 0, 121, 96);
+		contentPane.add(lblLogo);
 		
 		JLabel lblNewLabel_1 = new JLabel("<html><body><center>MANCHESTER CITY<br>PLAYER MANAGEMENT<br>PROGRAM</center></body></html>");
 		lblNewLabel_1.setFont(new Font("Goudy Stout", Font.PLAIN, 16));

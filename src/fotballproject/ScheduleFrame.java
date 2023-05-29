@@ -59,8 +59,8 @@ public class ScheduleFrame extends JFrame implements ActionListener {
       
       setTitle(title);
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      setLocation(400, 200);
       setSize(1000, 600);
+      setLocationRelativeTo(null);
       setResizable(false);
       setLayout(null);
       
