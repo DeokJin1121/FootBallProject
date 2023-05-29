@@ -135,8 +135,5 @@ public class ScheduleFrame extends JFrame {
 	      Image daimage3 = daimage1.getScaledInstance(71,71 , Image.SCALE_SMOOTH);
 	      ImageIcon daicon3 = new ImageIcon(daimage3);
 	      lblLogo.setIcon(daicon3);
-		
-		
-		
 	}
 }

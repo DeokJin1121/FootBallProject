@@ -140,7 +140,6 @@ public class StarterFrame extends JFrame implements ActionListener {
 			
 		setVisible(true);
 	}
-
 	
 	// 달력 값을 관리하는 기본 메소드
 	private void calManage() {
