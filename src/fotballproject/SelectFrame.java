@@ -18,8 +18,8 @@ import javax.swing.ImageIcon;
 public class SelectFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField taBackNum;
+	private JTextField taPositon;
 
 	/**
 	 * Launch the application.
@@ -50,53 +50,53 @@ public class SelectFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(401, 21, 192, 234);
-		contentPane.add(lblNewLabel);
+		JLabel playerImage = new JLabel("");
+		playerImage.setBounds(401, 12, 192, 240);
+		contentPane.add(playerImage);
 
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(197, 40, 192, 41);
+		comboBox.setBounds(190, 40, 192, 41);
 		contentPane.add(comboBox);
 
-		textField = new JTextField();
-		textField.setBounds(197, 165, 192, 41);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		taBackNum = new JTextField();
+		taBackNum.setBounds(190, 165, 192, 41);
+		contentPane.add(taBackNum);
+		taBackNum.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(197, 105, 192, 41);
-		contentPane.add(textField_1);
+		taPositon = new JTextField();
+		taPositon.setColumns(10);
+		taPositon.setBounds(190, 105, 192, 41);
+		contentPane.add(taPositon);
 
-		JButton btnNewButton = new JButton("SELECT");
-		btnNewButton.setBackground(new Color(153, 204, 255));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(163, 232, 91, 23);
-		contentPane.add(btnNewButton);
+		JButton btnSelect = new JButton("SELECT");
+		btnSelect.setBackground(new Color(153, 204, 255));
+		btnSelect.setForeground(new Color(0, 0, 0));
+		btnSelect.setBounds(163, 232, 91, 23);
+		contentPane.add(btnSelect);
 
-		JLabel lblNewLabel_1 = new JLabel("NAME");
-		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(83, 53, 50, 15);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblName = new JLabel("NAME");
+		lblName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		lblName.setBounds(83, 53, 50, 15);
+		contentPane.add(lblName);
 
-		JLabel lblNewLabel_1_1 = new JLabel("POSITION");
-		lblNewLabel_1_1.setFont(new Font("굴림", Font.BOLD, 14));
-		lblNewLabel_1_1.setBounds(68, 118, 84, 15);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel lblPositon = new JLabel("POSITION");
+		lblPositon.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		lblPositon.setBounds(68, 118, 84, 15);
+		contentPane.add(lblPositon);
 
-		JLabel lblNewLabel_1_1_1 = new JLabel("BACKNUMBER");
-		lblNewLabel_1_1_1.setFont(new Font("굴림", Font.BOLD, 14));
-		lblNewLabel_1_1_1.setBounds(52, 178, 120, 15);
-		contentPane.add(lblNewLabel_1_1_1);
+		JLabel lblBackNum = new JLabel("BACKNUMBER");
+		lblBackNum.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		lblBackNum.setBounds(52, 178, 120, 15);
+		contentPane.add(lblBackNum);
 
-		JLabel lblLogo = new JLabel("New label");
-		lblLogo.setBounds(0, 0, 71, 71);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setBounds(0, 0, 68, 68);
 		contentPane.add(lblLogo);
 		
 		ImageIcon daicon1 = new ImageIcon("image/mancity5.png");
 		Image daimage1 = daicon1.getImage();
 		Image daimage3 = daimage1.getScaledInstance(71, 71, Image.SCALE_SMOOTH);
 		ImageIcon daicon3 = new ImageIcon(daimage3);
-		lblLogo.setIcon(daicon3);
+		lblLogo.setIcon(new ImageIcon(SelectFrame.class.getResource("/fotballproject/MancityLogoSelect.png")));
 	}
 }
