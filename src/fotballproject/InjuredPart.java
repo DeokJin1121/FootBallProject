@@ -84,8 +84,7 @@ public class InjuredPart extends JFrame implements ActionListener {
 			
 		} else if(obj == btnInsert && x == 8) {
 			JOptionPane aa = new JOptionPane();
-			String str = aa.showInputDialog("부상 부위를 입력하세요.");
-			
+			String injuredEtc = aa.showInputDialog("부상 부위를 입력하세요.");
 		}	
 	}	
 }
