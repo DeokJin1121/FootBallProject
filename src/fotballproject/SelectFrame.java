@@ -45,7 +45,7 @@ public class SelectFrame extends JFrame implements ActionListener {
    }
 
    public SelectFrame() {
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   setTitle("선수 검색");
       setBounds(100, 100, 619, 302);
       contentPane = new JPanel();
       contentPane.setBackground(new Color(255, 255, 255));
@@ -64,25 +64,25 @@ public class SelectFrame extends JFrame implements ActionListener {
             ,"Cole Palmer","Rico Lewis"};
       
       comboBox = new JComboBox(name);
-      comboBox.setBounds(190, 40, 192, 41);
+      comboBox.setBounds(190, 70, 192, 30);
       contentPane.add(comboBox);
       
 
       taBackNum = new JTextField();
-      taBackNum.setBounds(190, 165, 192, 41);
+      taBackNum.setBounds(190, 180, 192, 30);
       contentPane.add(taBackNum);
       taBackNum.setColumns(10);
+      
 
       taPositon = new JTextField();
       taPositon.setColumns(10);
-      taPositon.setBounds(190, 105, 192, 41);
+      taPositon.setBounds(190, 125, 192, 30);
       contentPane.add(taPositon);
       
       taBackNum.setFont(new Font("맑은 고딕", Font.BOLD, 14));
       taPositon.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 
       btnSelect = new JButton("SELECT");
-      btnSelect.setBackground(new Color(153, 204, 255));
       btnSelect.setForeground(new Color(0, 0, 0));
       btnSelect.setBounds(163, 232, 91, 23);
       contentPane.add(btnSelect);
@@ -90,21 +90,21 @@ public class SelectFrame extends JFrame implements ActionListener {
 
       JLabel lblName = new JLabel("NAME");
       lblName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-      lblName.setBounds(83, 53, 50, 15);
+      lblName.setBounds(80, 76, 50, 15);
       contentPane.add(lblName);
 
       JLabel lblPositon = new JLabel("POSITION");
       lblPositon.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-      lblPositon.setBounds(68, 118, 84, 15);
+      lblPositon.setBounds(70, 133, 74, 15);
       contentPane.add(lblPositon);
 
       JLabel lblBackNum = new JLabel("BACKNUMBER");
       lblBackNum.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-      lblBackNum.setBounds(52, 178, 120, 15);
+      lblBackNum.setBounds(58, 188, 104, 15);
       contentPane.add(lblBackNum);
 
       JLabel lblLogo = new JLabel("");
-      lblLogo.setBounds(0, 0, 68, 68);
+      lblLogo.setBounds(5, 5, 68, 68);
       contentPane.add(lblLogo);
       
       ImageIcon daicon1 = new ImageIcon("image/mancity5.png");

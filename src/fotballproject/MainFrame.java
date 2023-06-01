@@ -35,6 +35,7 @@ public class MainFrame extends JFrame implements ActionListener {
    private Stadium stadiumframe;
 
    public MainFrame() {
+	   setTitle("메인");
       setBounds(550, 200, 610, 580);
       setLocationRelativeTo(null);
       contentPane = new JPanel();

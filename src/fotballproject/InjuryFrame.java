@@ -24,8 +24,9 @@ public class InjuryFrame extends JFrame {
 	}
 
 	public InjuryFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("부상 선수 추가/삭제");
 		setBounds(100, 100, 709, 617);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

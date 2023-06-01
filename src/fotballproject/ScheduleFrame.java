@@ -251,9 +251,6 @@ public class ScheduleFrame extends JFrame implements ActionListener {
       
       }
    
-   
-      
-      
       //달력 빈칸 없애기 
       for (int i = 0; i < buttons.length; i++) {
          if ( buttons[i].getText().equals("")) {
@@ -282,7 +279,7 @@ public class ScheduleFrame extends JFrame implements ActionListener {
       
    }
 public static void main(String[] args) {
-   new ScheduleFrame("");
+   new ScheduleFrame("멘시티 일정");
 }
    @Override
    public void actionPerformed(ActionEvent e) {

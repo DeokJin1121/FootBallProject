@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.image.Raster;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -66,7 +67,6 @@ public class LoginFrame extends JFrame implements ActionListener {
       
       inbtn = new JButton("접속");
       inbtn.addActionListener(this);
-      inbtn.setBackground(new Color(153, 204, 255));
       inbtn.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
          }
@@ -77,7 +77,6 @@ public class LoginFrame extends JFrame implements ActionListener {
       
       exitbtn = new JButton("종료");
       exitbtn.addActionListener(this);
-      exitbtn.setBackground(new Color(153, 204, 255));
       exitbtn.setBounds(234, 221, 114, 34);
       contentPane.add(exitbtn);
       
@@ -94,6 +93,7 @@ public class LoginFrame extends JFrame implements ActionListener {
       JLabel lblLogo = new JLabel("");
       lblLogo.setBounds(180, 10, 84, 92);
       contentPane.add(lblLogo);
+      
       
       ImageIcon daicon1 = new ImageIcon("image/mancity5.png");
       Image daimage1 = daicon1.getImage();

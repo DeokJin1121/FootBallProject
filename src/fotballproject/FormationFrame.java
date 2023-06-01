@@ -36,8 +36,9 @@ public class FormationFrame extends JFrame {
 	}
 
 	public FormationFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 50, 1100, 903);
+		setTitle("포메이션");
+		setBounds(300, 50, 967, 830);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,7 +47,7 @@ public class FormationFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setBounds(12, 10, 143, 136);
+		lblLogo.setBounds(3, 0, 130, 119);
 		contentPane.add(lblLogo);
 		
 		ImageIcon daicon1 = new ImageIcon("image/mancity6.png");
@@ -56,8 +57,8 @@ public class FormationFrame extends JFrame {
 		lblLogo.setIcon(daicon3);
 		
 		JLabel lblLogo2 = new JLabel("<html><body><center>MANCHESTER CITY<br>PLAYER MANAGEMENT<br>PROGRAM</center></body></html>");
-		lblLogo2.setFont(new Font("Goudy Stout", Font.PLAIN, 18));
-		lblLogo2.setBounds(167, 25, 397, 104);
+		lblLogo2.setFont(new Font("Goudy Stout", Font.PLAIN, 15));
+		lblLogo2.setBounds(145, 10, 330, 103);
 		contentPane.add(lblLogo2);
 		
 		// 포메이션 패널
@@ -65,14 +66,14 @@ public class FormationFrame extends JFrame {
 		TitledBorder titledBorder = new TitledBorder(new LineBorder(Color.BLACK,1), "포메이션");
 		titledBorder.setTitleFont(new Font("Decodig", Font.PLAIN, 20));
 		inputPanel.setBackground(new Color(255, 255, 255));
-		inputPanel.setBounds(32, 156, 510, 705);
+		inputPanel.setBounds(32, 123, 429, 660);
 		inputPanel.setBorder(titledBorder);
 		
-		JLabel lblFormation = new JLabel("");
-		lblFormation.setBounds(12, 33, 486, 617);
+		JLabel lblFormation = new JLabel();
+		lblFormation.setBounds(12, 33, 400, 572);
 		inputPanel.add(lblFormation);
 		
-		ImageIcon daicon = new ImageIcon("image/fomation4.jpg");
+		ImageIcon daicon = new ImageIcon("image/fomation5.jpg");
 		Image daimage = daicon.getImage();
 		Image daimage2 = daimage.getScaledInstance(480 ,754, Image.SCALE_SMOOTH);
 		
@@ -82,29 +83,26 @@ public class FormationFrame extends JFrame {
 		
 		inputPanel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("4-2-3-1");
-		btnNewButton.setBackground(new Color(153, 204, 255));
-		btnNewButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-		btnNewButton.setBounds(12, 660, 150, 35);
-		inputPanel.add(btnNewButton);
+		JButton btnFomation = new JButton("4-2-3-1");
+		btnFomation.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		btnFomation.setBounds(12, 615, 109, 35);
+		inputPanel.add(btnFomation);
 		
-		JButton btnNewButton_1 = new JButton("4-1-2-3");
-		btnNewButton_1.setBackground(new Color(153, 204, 255));
-		btnNewButton_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-		btnNewButton_1.setBounds(177, 660, 150, 35);
-		inputPanel.add(btnNewButton_1);
+		JButton btnFormation2 = new JButton("4-1-2-3");
+		btnFormation2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		btnFormation2.setBounds(150, 615, 119, 35);
+		inputPanel.add(btnFormation2);
 		
-		JButton btnNewButton_1_1 = new JButton("4-2-2-2");
-		btnNewButton_1_1.setBackground(new Color(153, 204, 255));
-		btnNewButton_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-		btnNewButton_1_1.setBounds(343, 660, 150, 35);
-		inputPanel.add(btnNewButton_1_1);
+		JButton btnFomation3 = new JButton("4-2-2-2");
+		btnFomation3.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		btnFomation3.setBounds(297, 615, 119, 35);
+		inputPanel.add(btnFomation3);
 		
 		// 선발 선수 테이블 패널
 		JPanel tablePanel = new JPanel();
 		tablePanel.setLayout(null);
 		tablePanel.setBackground(Color.WHITE);
-		tablePanel.setBounds(564, 156, 510, 705);
+		tablePanel.setBounds(488, 123, 429, 660);
 		contentPane.add(tablePanel);
 		
 		TitledBorder titledBorder2 = new TitledBorder(new LineBorder(Color.BLACK, 1), "선발 선수 테이블");
