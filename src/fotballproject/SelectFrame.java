@@ -43,6 +43,7 @@ public class SelectFrame extends JFrame implements ActionListener {
          }
       });
    }
+   
 
    public SelectFrame() {
 	   setTitle("선수 검색");

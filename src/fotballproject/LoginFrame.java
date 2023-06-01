@@ -94,7 +94,6 @@ public class LoginFrame extends JFrame implements ActionListener {
       lblLogo.setBounds(180, 10, 84, 92);
       contentPane.add(lblLogo);
       
-      
       ImageIcon daicon1 = new ImageIcon("image/mancity5.png");
       Image daimage1 = daicon1.getImage();
       Image daimage3 = daimage1.getScaledInstance(71, 71, Image.SCALE_SMOOTH);
@@ -106,6 +105,7 @@ public class LoginFrame extends JFrame implements ActionListener {
    @Override
    public void actionPerformed(ActionEvent e) {
       Object obj = e.getSource();
+      
       if (obj == exitbtn) {
           if(JOptionPane.showConfirmDialog(this, "종료하시겠습니까?", "종료", 
                      JOptionPane.YES_NO_OPTION, 
@@ -115,6 +115,7 @@ public class LoginFrame extends JFrame implements ActionListener {
       }else if (obj == inbtn) {
          if ("yeonwoonuf".equals(id.getText())&&"jyw092700".equals(pw.getText()) ) {
             MainFrame frame = new MainFrame();
+            System.exit(0);
             
          }else if ("deokjin".equals(id.getText())&&"202045099".equals(pw.getText())) {
             MainFrame frame = new MainFrame();

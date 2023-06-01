@@ -13,8 +13,7 @@ public class DB {
 	public static Connection conn;
 	public static Statement stmt;
 	
-	public static void init( ) {
-		
+public static void main(String[] args) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
@@ -31,7 +30,7 @@ public class DB {
 			System.out.println("접속 오류 / SQL 오류");
 			e.printStackTrace();
 		}
-	}
+}
 	
 	// 조회
 	public static ResultSet getResultSet(String sql) {
