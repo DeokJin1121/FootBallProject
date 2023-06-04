@@ -8,8 +8,12 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Component;
@@ -19,47 +23,23 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class FormationFrame extends JFrame implements ActionListener {
 
    private JPanel contentPane;
    private JButton btnFomation;
    private JLabel lblFormation;
-   private JLabel lbl1;
-   private JLabel lbl2;
-   private JLabel lbl3;
-   private JLabel lbl4;
-   private JLabel lbl5;
-   private JLabel lbl6;
-   private JLabel lbl7;
-   private JLabel lbl8;
-   private JLabel lbl9;
-   private JLabel lbl10;
-   private JLabel lbl11;
-   private JLabel lbl12;
-   private JLabel lbl13;
-   private JLabel lbl14;
-   private JLabel lbl15;
-   private JLabel lbl16;
-   private JLabel lbl17;
-   private JLabel lbl18;
-   private JLabel lbl19;
-   private JLabel lbl20;
    private JTextField btnFomation2;
    private JButton btnFormation2;
    private JButton btnFomation3;
-   private JLabel lbl21;
-   private JLabel lbl22;
-   private JLabel lbl23;
-   private JLabel lbl24;
-   private JLabel lbl25;
-   private JLabel lbl26;
-   private JLabel lbl27;
-   private JLabel lbl28;
-   private JLabel lbl29;
-   private JLabel lbl30;
+   
+   JLabel[] lbl = new JLabel[34];
+   JLabel[] lblname = new JLabel[34];
+   JLabel[] lblnumber = new JLabel[34];
 
    public static void main(String[] args) {
       EventQueue.invokeLater(new Runnable() {
@@ -118,102 +98,22 @@ public class FormationFrame extends JFrame implements ActionListener {
       
       lblFormation.setIcon(daicon);
       
-      //---------------------------------------------- 4-2-3-1 라벨------------------------------
-      lbl1 = new JLabel();
-      lblFormation.add(lbl1);
-      
-      lbl2 = new JLabel();
-      lblFormation.add(lbl2);
-      
-      lbl3 = new JLabel();
-      lblFormation.add(lbl3);
-      
-      lbl4 = new JLabel();
-      lblFormation.add(lbl4);
-      
-      lbl5 = new JLabel();
-      lblFormation.add(lbl5);
-      
-      lbl6 = new JLabel();
-      lblFormation.add(lbl6);
-      
-      lbl7 = new JLabel();
-      lblFormation.add(lbl7);
-      
-      lbl8 = new JLabel();
-      lblFormation.add(lbl8);
-      
-      lbl9 = new JLabel();
-      lblFormation.add(lbl9);
-      
-      lbl10 = new JLabel();
-      lblFormation.add(lbl10);
-      //----------------------------------------------------4-2-3-1라벨 끝----------------------------
+      for (int i = 1; i <= 33; i++) {
+            lbl[i] = new JLabel();
+            lblFormation.add(lbl[i]);
+      };
+      for (int i = 1; i <= 33; i++) {
+            lblname[i] = new JLabel();
+            lblFormation.add(lblname[i]);
+      };
+      for (int i = 1; i <= 33; i++) {
+            lblnumber[i] = new JLabel();
+            lblFormation.add(lblnumber[i]);
+      };
       
       
-      //----------------------------------------------------4-1-2-3라벨------------------------------
-      lbl11 = new JLabel();
-      lblFormation.add(lbl11);
-      
-      lbl12 = new JLabel();
-      lblFormation.add(lbl12);
-      
-      lbl13 = new JLabel();
-      lblFormation.add(lbl13);
-      
-      lbl14 = new JLabel();
-      lblFormation.add(lbl14);
-      
-      lbl15 = new JLabel();
-      lblFormation.add(lbl15);
-      
-      lbl16 = new JLabel();
-      lblFormation.add(lbl16);
-      
-      lbl17 = new JLabel();
-      lblFormation.add(lbl17);
-      
-      lbl18 = new JLabel();
-      lblFormation.add(lbl18);
-      
-      lbl19 = new JLabel();
-      lblFormation.add(lbl19);
-      
-      lbl20 = new JLabel();
-      lblFormation.add(lbl20);
-      //----------------------------------------------------4-1-2-3라벨 끝----------------------------
-      
-      //-----------------------------------------------------4-2-2-2라벨-------------------------
-      lbl21 = new JLabel();
-      lblFormation.add(lbl21);
-      
-      lbl22 = new JLabel();
-      lblFormation.add(lbl22);
-      
-      lbl23 = new JLabel();
-      lblFormation.add(lbl23);
-      
-      lbl24 = new JLabel();
-      lblFormation.add(lbl24);
-      
-      lbl25 = new JLabel();
-      lblFormation.add(lbl25);
-      
-      lbl26 = new JLabel();
-      lblFormation.add(lbl26);
-      
-      lbl27 = new JLabel();
-      lblFormation.add(lbl27);
-      
-      lbl28 = new JLabel();
-      lblFormation.add(lbl28);
-      
-      lbl29 = new JLabel();
-      lblFormation.add(lbl29);
-      
-      lbl30 = new JLabel();
-      lblFormation.add(lbl30);
-      //-----------------------------------------------------4-2-2-2라벨 끝-----------------
+               
+
       
       contentPane.add(inputPanel);
       
@@ -248,245 +148,331 @@ public class FormationFrame extends JFrame implements ActionListener {
       titledBorder2.setTitleFont(new Font("Decoding", Font.PLAIN, 20));
       tablePanel.setBorder(titledBorder2);
       
+      String[] str = {"1","2","3","4","5","6","7","8","9","10","11"};
+      JComboBox<String> combo = new JComboBox<String>(str);
+      combo.setBounds(150, 400, 60, 30);
+      tablePanel.add(combo);
+      JButton btninsert = new JButton("넣기");
+      btninsert.setBounds(220, 400, 60, 30);
+      tablePanel.add(btninsert);
+      
+      
    }
 
    @Override
    public void actionPerformed(ActionEvent e) {
       Object obj = e.getSource();
       if (obj == btnFomation) {
+         for (int i = 1; i <=11; i++) {
+            lbl[i].setBackground(Color.red);
+            lbl[i].setOpaque(true);
+         }
+         for (int i = 1; i <=11; i++) {
+            lblname[i].setBackground(Color.yellow);
+            lblname[i].setOpaque(true);
+         }
+         for (int i = 1; i <=11; i++) {
+            
+            lblnumber[i].setOpaque(false);
+         }
+//----------------------------------골키퍼 위치 ------------
          
-//---------------------------------------4         
-         lbl1.setBounds(50, 450, 50, 50);
-         lbl1.setBackground(Color.red);
-         lbl1.setOpaque(true);
+         lbl[1].setBounds(175, 510, 50, 50);
+         lblname[1].setBounds(152, 560, 90, 15);
+         lblnumber[1].setBounds(196, 495, 15, 15);
+         lblnumber[1].setText("1");
+         
+         
+//------------------------------------------------4   
+         lbl[2].setBounds(30, 430, 50, 50);
+         lblname[2].setBounds(9, 480, 90, 15);
+         lblnumber[2].setBounds(51, 415, 15, 15);
+         lblnumber[2].setText("2");
+         
                   
-         lbl2.setBounds(130, 450, 50, 50);
-         lbl2.setBackground(Color.red);
-         lbl2.setOpaque(true);
+         lbl[3].setBounds(130, 430, 50, 50);
+         lblname[3].setBounds(106, 480, 90, 15);
+         lblnumber[3].setBounds(150, 415, 15, 15);
+         lblnumber[3].setText("3");
+         
                      
-         lbl3.setBounds(210, 450, 50, 50);
-         lbl3.setBackground(Color.red);
-         lbl3.setOpaque(true);
-                  
-         lbl4.setBounds(290, 450, 50, 50);
-         lbl4.setBackground(Color.red);
-         lbl4.setOpaque(true);
-//--------------------------------------2                  
+         lbl[4].setBounds(220, 430, 50, 50);
+         lblname[4].setBounds(200, 480, 90, 15);
+         lblnumber[4].setBounds(244, 415, 15, 15);
+         lblnumber[4].setText("4");
          
-         lbl5.setBounds(100, 340, 50, 50);
-         lbl5.setBackground(Color.red);
-         lbl5.setOpaque(true);
                   
-         lbl6.setBounds(247, 340, 50, 50);
-         lbl6.setBackground(Color.red);
-         lbl6.setOpaque(true);
-//---------------------------------------------   3            
+         lbl[5].setBounds(320, 430, 50, 50);
+         lblname[5].setBounds(300, 480, 90, 15);
+         lblnumber[5].setBounds(344, 415, 15, 15);
+         lblnumber[5].setText("5");
+//------------------------------------------------2                  
+         lbl[6].setBounds(100, 340, 50, 50);
+         lblname[6].setBounds(80, 390, 90, 15);
+         lblnumber[6].setBounds(119, 325, 15, 15);
+         lblnumber[6].setText("6");
          
-         lbl7.setBounds(60, 230, 50, 50);
-         lbl7.setBackground(Color.red);
-         lbl7.setOpaque(true);
-                  
-         lbl8.setBounds(290, 230, 50, 50);
-         lbl8.setBackground(Color.red);
-         lbl8.setOpaque(true);
-                  
-         lbl9.setBounds(175, 230, 50, 50);
-         lbl9.setBackground(Color.red);
-         lbl9.setOpaque(true);
-//------------------------------------------------   1            
+         lbl[7].setBounds(247, 340, 50, 50);
+         lblname[7].setBounds(227, 390, 90, 15);
+         lblnumber[7].setBounds(266, 325, 15, 15);
+         lblnumber[7].setText("7");
+//-----------------------------------------------3            
+         lbl[8].setBounds(60, 230, 50, 50);
+         lblname[8].setBounds(40, 280, 90, 15);
+         lblnumber[8].setBounds(79, 215, 15, 15);
+         lblnumber[8].setText("8");
          
-         lbl10.setBounds(175, 140, 50, 50);
-         lbl10.setBackground(Color.red);
-         lbl10.setOpaque(true);
+         lbl[9].setBounds(290, 230, 50, 50);
+         lblname[9].setBounds(270, 280, 90, 15);
+         lblnumber[9].setBounds(309, 215, 15, 15);
+         lblnumber[9].setText("9");
+         
+         lbl[10].setBounds(175, 230, 50, 50);
+         lblname[10].setBounds(155, 280, 90, 15);
+         lblnumber[10].setBounds(194, 215, 15, 15);
+         lblnumber[10].setText("10");
+//------------------------------------------------1            
+         lbl[11].setBounds(175, 140, 50, 50);
+         lblname[11].setBounds(155, 190, 90, 15);
+         lblnumber[11].setBounds(194, 125, 15, 15);
+         lblnumber[11].setText("11");
+         
          
 //------------------------------------------------   
-         lbl1.setVisible(true);
-         lbl2.setVisible(true);
-         lbl3.setVisible(true);
-         lbl4.setVisible(true);
-         lbl5.setVisible(true);
-         lbl6.setVisible(true);
-         lbl7.setVisible(true);
-         lbl8.setVisible(true);
-         lbl9.setVisible(true);
-         lbl10.setVisible(true);
          
-         lbl11.setVisible(false);
-         lbl12.setVisible(false);
-         lbl13.setVisible(false);
-         lbl14.setVisible(false);
-         lbl15.setVisible(false);
-         lbl16.setVisible(false);
-         lbl17.setVisible(false);
-         lbl18.setVisible(false);
-         lbl19.setVisible(false);
-         lbl20.setVisible(false);
-         
-         lbl21.setVisible(false);
-         lbl22.setVisible(false);
-         lbl23.setVisible(false);
-         lbl24.setVisible(false);
-         lbl25.setVisible(false);
-         lbl26.setVisible(false);
-         lbl27.setVisible(false);
-         lbl28.setVisible(false);
-         lbl29.setVisible(false);
-         lbl30.setVisible(false);
+         for(int i = 1;i<=11;i++) {
+            lbl[i].setVisible(true);
+         }
+         for(int i = 12;i<=23;i++) {
+            lbl[i].setVisible(false);
+         }
+         for(int i = 24;i<=33;i++) {
+            lbl[i].setVisible(false);
+         }
+//         ------------------------------------------
+         for(int i = 1;i<=11;i++) {
+            lblname[i].setVisible(true);
+         }
+         for(int i = 12;i<=23;i++) {
+            lblname[i].setVisible(false);
+         }
+         for(int i = 24;i<=33;i++) {
+            lblname[i].setVisible(false);
+            
+         }
+         for(int i = 1;i<=11;i++) {
+            lblnumber[i].setVisible(true);
+         }
+         for(int i = 12;i<=23;i++) {
+            lblnumber[i].setVisible(false);
+         }
+         for(int i = 24;i<=33;i++) {
+            lblnumber[i].setVisible(false);
+         }
          
       }else if (obj == btnFormation2) {
-//------------------------------------4
+            for (int i = 11; i <=22; i++) {
+               lbl[i].setBackground(Color.red);
+               lbl[i].setOpaque(true);
+            }
+            for (int i = 11; i <=22; i++) {
+               lblname[i].setBackground(Color.yellow);
+               lblname[i].setOpaque(true);
+            }
+            for (int i = 11; i <=22; i++) {
+               lblnumber[i].setOpaque(false);
+            }
+            
+         lbl[12].setBounds(175, 510, 50, 50);
+         lblname[12].setBounds(152, 560, 90, 15);
+         lblnumber[12].setBounds(196, 495, 15, 15);
+         lblnumber[12].setText("1");
+//-----------------------------------------------4
+         lbl[13].setBounds(30, 430, 50, 50);
+         lblname[13].setBounds(9, 480, 90, 15);
+         lblnumber[13].setBounds(51, 415, 15, 15);
+         lblnumber[13].setText("2");
          
-         lbl11.setBounds(50, 450, 50, 50);
-         lbl11.setBackground(Color.red);
-         lbl11.setOpaque(true);
-                  
-         lbl12.setBounds(130, 450, 50, 50);
-         lbl12.setBackground(Color.red);
-         lbl12.setOpaque(true);
-                     
-         lbl13.setBounds(210, 450, 50, 50);
-         lbl13.setBackground(Color.red);
-         lbl13.setOpaque(true);
+         lbl[14].setBounds(130, 430, 50, 50);
+         lblname[14].setBounds(106, 480, 90, 15);
+         lblnumber[14].setBounds(150, 415, 15, 15);
+         lblnumber[14].setText("3");
          
-         lbl14.setBounds(290, 450, 50, 50);
-         lbl14.setBackground(Color.red);
-         lbl14.setOpaque(true);
-                  
-//-------------------------------------   1      
-         lbl15.setBounds(175, 340, 50, 50);
-         lbl15.setBackground(Color.red);
-         lbl15.setOpaque(true);
+         lbl[15].setBounds(220, 430, 50, 50);
+         lblname[15].setBounds(200, 480, 90, 15);
+         lblnumber[15].setBounds(244, 415, 15, 15);
+         lblnumber[15].setText("4");
+         
+         lbl[16].setBounds(320, 430, 50, 50);
+         lblname[16].setBounds(300, 480, 90, 15);
+         lblnumber[16].setBounds(344, 415, 15, 15);
+         lblnumber[16].setText("5");
+         
+//-----------------------------------------------1      
+         lbl[17].setBounds(175, 340, 50, 50);
+         lblname[17].setBounds(155, 390, 90, 15);
+         lblnumber[17].setBounds(199, 325, 15, 15);
+         lblnumber[17].setText("6");
 //---------------------------   2               
-         lbl16.setBounds(100, 230, 50, 50);
-         lbl16.setBackground(Color.red);
-         lbl16.setOpaque(true);
+         lbl[18].setBounds(100, 230, 50, 50);
+         lblname[18].setBounds(80, 280, 90, 15);
+         lblnumber[18].setBounds(124, 215, 15, 15);
+         lblnumber[18].setText("7");
          
-         lbl17.setBounds(247, 230, 50, 50);
-         lbl17.setBackground(Color.red);
-         lbl17.setOpaque(true);
-               
-//-------------------------------------   3                  
+         lbl[19].setBounds(247, 230, 50, 50);
+         lblname[19].setBounds(227, 280, 90, 15);
+         lblnumber[19].setBounds(271, 215, 15, 15);
+         lblnumber[19].setText("8");
+//-----------------------------------------------3                  
+         lbl[20].setBounds(60, 140, 50, 50);
+         lblname[20].setBounds(40, 190, 90, 15);
+         lblnumber[20].setBounds(84, 125, 15, 15);
+         lblnumber[20].setText("9");
          
-         lbl18.setBounds(60, 140, 50, 50);
-         lbl18.setBackground(Color.red);
-         lbl18.setOpaque(true);
+         lbl[21].setBounds(175, 140, 50, 50);
+         lblname[21].setBounds(155, 190, 90, 15);
+         lblnumber[21].setBounds(194, 125, 15, 15);
+         lblnumber[21].setText("10");
+                     
+         lbl[22].setBounds(290, 140, 50, 50);
+         lblname[22].setBounds(270, 190, 90, 15);
+         lblnumber[22].setBounds(309, 125, 15, 15);
+         lblnumber[22].setText("11");
          
-         lbl19.setBounds(175, 140, 50, 50);
-         lbl19.setBackground(Color.red);
-         lbl19.setOpaque(true);
-               
-         lbl20.setBounds(290, 140, 50, 50);
-         lbl20.setBackground(Color.red);
-         lbl20.setOpaque(true);
-         
-         lbl1.setVisible(false);
-         lbl2.setVisible(false);
-         lbl3.setVisible(false);
-         lbl4.setVisible(false);
-         lbl5.setVisible(false);
-         lbl6.setVisible(false);
-         lbl7.setVisible(false);
-         lbl8.setVisible(false);
-         lbl9.setVisible(false);
-         lbl10.setVisible(false);
-         
-         lbl11.setVisible(true);
-         lbl12.setVisible(true);
-         lbl13.setVisible(true);
-         lbl14.setVisible(true);
-         lbl15.setVisible(true);
-         lbl16.setVisible(true);
-         lbl17.setVisible(true);
-         lbl18.setVisible(true);
-         lbl19.setVisible(true);
-         lbl20.setVisible(true);
-         
-         lbl21.setVisible(false);
-         lbl22.setVisible(false);
-         lbl23.setVisible(false);
-         lbl24.setVisible(false);
-         lbl25.setVisible(false);
-         lbl26.setVisible(false);
-         lbl27.setVisible(false);
-         lbl28.setVisible(false);
-         lbl29.setVisible(false);
-         lbl30.setVisible(false);
+         for(int i = 1;i<=11;i++) {
+            lbl[i].setVisible(false);
+         }
+         for(int i = 12;i<=22;i++) {
+            lbl[i].setVisible(true);
+         }
+         for(int i = 24 ;i<=33;i++) {
+            lbl[i].setVisible(false);
+         }
+//----------------------------------------------
+         for(int i = 1;i<=11;i++) {
+            lblname[i].setVisible(false);
+         }
+         for(int i = 12;i<=23;i++) {
+            lblname[i].setVisible(true);
+         }
+         for(int i = 24;i<=33;i++) {
+            lblname[i].setVisible(false);
+         }
+         //-------------------------------------
+         for(int i = 1;i<=11;i++) {
+            lblnumber[i].setVisible(false);
+         }
+         for(int i = 12;i<=22;i++) {
+            lblnumber[i].setVisible(true);
+         }
+         for(int i = 23;i<=33;i++) {
+            lblnumber[i].setVisible(false);
+         }
+      
          
       }else if (obj == btnFomation3) {
+         for (int i = 23; i <=33; i++) {
+            lbl[i].setBackground(Color.red);
+            lbl[i].setOpaque(true);
+         }
+         for (int i = 23; i <=33; i++) {
+            lblname[i].setBackground(Color.yellow);
+            lblname[i].setOpaque(true);
+         }
+         
+         for (int i = 23; i <=33; i++) {
+            lblnumber[i].setOpaque(false);
+         }
+         
+         lbl[23].setBounds(175, 510, 50, 50);
+         lblname[23].setBounds(152, 560, 90, 15);
+         lblnumber[23].setBounds(196, 495, 15, 15);
+         lblnumber[23].setText("1");
 //---------------------------------------------4         
-         lbl21.setBounds(50, 450, 50, 50);
-         lbl21.setBackground(Color.red);
-         lbl21.setOpaque(true);
-                  
-         lbl22.setBounds(130, 450, 50, 50);
-         lbl22.setBackground(Color.red);
-         lbl22.setOpaque(true);
-                     
-         lbl23.setBounds(210, 450, 50, 50);
-         lbl23.setBackground(Color.red);
-         lbl23.setOpaque(true);
-                  
-         lbl24.setBounds(290, 450, 50, 50);
-         lbl24.setBackground(Color.red);
-         lbl24.setOpaque(true);
+         lbl[24].setBounds(30, 430, 50, 50);
+         lblname[24].setBounds(9, 480, 90, 15);
+         lblnumber[24].setBounds(51, 415, 15, 15);
+         lblnumber[24].setText("2");
+
+         lbl[25].setBounds(130, 430, 50, 50);
+         lblname[25].setBounds(106, 480, 90, 15);
+         lblnumber[25].setBounds(150, 415, 15, 15);
+         lblnumber[25].setText("3");
+
+         lbl[26].setBounds(220, 430, 50, 50);
+         lblname[26].setBounds(200, 480, 90, 15);
+         lblnumber[26].setBounds(244, 415, 15, 15);
+         lblnumber[26].setText("4");
+   
+         lbl[27].setBounds(320, 430, 50, 50);
+         lblname[27].setBounds(300, 480, 90, 15);
+         lblnumber[27].setBounds(344, 415, 15, 15);
+         lblnumber[27].setText("5");
+      
 //----------------------------------------------2         
-         lbl25.setBounds(100, 340, 50, 50);
-         lbl25.setBackground(Color.red);
-         lbl25.setOpaque(true);
+         lbl[28].setBounds(100, 340, 50, 50);
+         lblname[28].setBounds(80, 390, 90, 15);
+         lblnumber[28].setBounds(121, 325, 15, 15);
+         lblnumber[28].setText("6");
          
-         lbl26.setBounds(247, 340, 50, 50);
-         lbl26.setBackground(Color.red);
-         lbl26.setOpaque(true);
+         lbl[29].setBounds(247, 340, 50, 50);
+         lblname[29].setBounds(227, 390, 90, 15);
+         lblnumber[29].setBounds(268, 325, 15, 15);
+         lblnumber[29].setText("7");
 //----------------------------------------------2
-         lbl27.setBounds(60, 230, 50, 50);
-         lbl27.setBackground(Color.red);
-         lbl27.setOpaque(true);
+         lbl[30].setBounds(60, 230, 50, 50);
+         lblname[30].setBounds(40, 280, 90, 15);
+         lblnumber[30].setBounds(81, 215, 15, 15);
+         lblnumber[30].setText("8");
          
-         lbl28.setBounds(290, 230, 50, 50);
-         lbl28.setBackground(Color.red);
-         lbl28.setOpaque(true);
+         lbl[31].setBounds(290, 230, 50, 50);
+         lblname[31].setBounds(270, 280, 90, 15);
+         lblnumber[31].setBounds(311, 215, 15, 15);
+         lblnumber[31].setText("9");
 //----------------------------------------------2   
-         lbl29.setBounds(100, 140, 50, 50);
-         lbl29.setBackground(Color.red);
-         lbl29.setOpaque(true);
+         lbl[32].setBounds(100, 140, 50, 50);
+         lblname[32].setBounds(80, 190, 90, 15);
+         lblnumber[32].setBounds(119, 125, 15, 15);
+         lblnumber[32].setText("10");
          
-         lbl30.setBounds(247, 140, 50, 50);
-         lbl30.setBackground(Color.red);
-         lbl30.setOpaque(true);
+         lbl[33].setBounds(247, 140, 50, 50);
+         lblname[33].setBounds(227, 190, 90, 15);
+         lblnumber[33].setBounds(266, 125, 15, 15);
+         lblnumber[33].setText("11");
          
-         lbl1.setVisible(false);
-         lbl2.setVisible(false);
-         lbl3.setVisible(false);
-         lbl4.setVisible(false);
-         lbl5.setVisible(false);
-         lbl6.setVisible(false);
-         lbl7.setVisible(false);
-         lbl8.setVisible(false);
-         lbl9.setVisible(false);
-         lbl10.setVisible(false);
          
-         lbl11.setVisible(false);
-         lbl12.setVisible(false);
-         lbl13.setVisible(false);
-         lbl14.setVisible(false);
-         lbl15.setVisible(false);
-         lbl16.setVisible(false);
-         lbl17.setVisible(false);
-         lbl18.setVisible(false);
-         lbl19.setVisible(false);
-         lbl20.setVisible(false);
+         for(int i = 1;i<=11;i++) {
+            lbl[i].setVisible(false);
+         }
+         for(int i = 12;i<=22;i++) {
+            lbl[i].setVisible(false);
+         }
+         for(int i = 23;i<=33;i++) {
+            lbl[i].setVisible(true);
+         }
+//-------------------------------------------         
+         for(int i = 1;i<=11;i++) {
+            lblname[i].setVisible(false);
+         }
+         for(int i = 12;i<=22;i++) {
+            lblname[i].setVisible(false);
+         }
+         for(int i = 23;i<=33;i++) {
+            lblname[i].setVisible(true);
+         }
          
-         lbl21.setVisible(true);
-         lbl22.setVisible(true);
-         lbl23.setVisible(true);
-         lbl24.setVisible(true);
-         lbl25.setVisible(true);
-         lbl26.setVisible(true);
-         lbl27.setVisible(true);
-         lbl28.setVisible(true);
-         lbl29.setVisible(true);
-         lbl30.setVisible(true);
+         for(int i = 1;i<=11;i++) {
+            lblnumber[i].setVisible(false);
+         }
+         for(int i = 12;i<=22;i++) {
+            lblnumber[i].setVisible(false);
+         }
+         for(int i = 23;i<=33;i++) {
+            lblnumber[i].setVisible(true);
+         }
+         
       }
       
    }
 }
+

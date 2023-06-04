@@ -116,7 +116,6 @@ public class LoginFrame extends JFrame implements ActionListener {
          if ("yeonwoonuf".equals(id.getText())&&"jyw092700".equals(pw.getText()) ) {
             MainFrame frame = new MainFrame();
             System.exit(0);
-            
          }else if ("deokjin".equals(id.getText())&&"202045099".equals(pw.getText())) {
             MainFrame frame = new MainFrame();
          }else if ("wlals".equals(id.getText())&&"5489".equals(pw.getText())) {
