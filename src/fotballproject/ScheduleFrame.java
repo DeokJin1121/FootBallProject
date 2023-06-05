@@ -265,7 +265,7 @@ public class ScheduleFrame extends JFrame implements ActionListener {
       for (int i = 0; i < buttons.length; i++) {
          clickday = buttons[i].getText();
          try {
-            FileReader fr = new FileReader("C:\\Users\\UserK\\Desktop\\" + month +"월"+ clickday +"일 일정.txt");
+            FileReader fr = new FileReader("C:\\Windows\\" + month +"월"+ clickday +"일 일정.txt");
             buttons[i].setBackground(new Color(0xFFFFCC));
             fr.close();
          } catch (FileNotFoundException e) {
@@ -313,7 +313,7 @@ public static void main(String[] args) {
                
             //메모 불러오기             
             try {
-                  FileReader fr = new FileReader("C:\\Users\\UserK\\Desktop\\" + month +"월"+ clickday +"일 일정.txt");
+                  FileReader fr = new FileReader("C:\\Windows\\" + month +"월"+ clickday +"일 일정.txt");
                   int c = 0;
                   while ( (c = fr.read()) != -1 ) {
                      view = ""+view+(char)c+"";
@@ -344,7 +344,7 @@ public static void main(String[] args) {
             }
          
             String text = ""+tf.getText()+"";
-            String fileNm = "C:\\Users\\UserK\\Desktop\\" + month +"월"+ clickday +"일 일정.txt";
+            String fileNm = "C:\\Windows\\" + month +"월"+ clickday +"일 일정.txt";
             
             
             FileWriter fileWrite;
@@ -372,7 +372,7 @@ public static void main(String[] args) {
                return;                                                
             }
             
-            String fileNm = "C:\\Users\\UserK\\Desktop\\" + month +"월"+ clickday +"일 일정.txt";
+            String fileNm = "C:\\Windows\\" + month +"월"+ clickday +"일 일정.txt";
             File file = new File(fileNm);
             
             if( file.exists() ){ //파일존재여부확인                

@@ -286,10 +286,7 @@ public class InjuryFrame extends JFrame implements MouseListener, ActionListener
 		btninjuryDelete.setBounds(244, 593, 109, 40);
 		btninjuryDelete.addActionListener(this);
 		contentPane.add(btninjuryDelete);
-
 	}
-	
-	
 
 	private void DBConnect() {
 		// DB 연결

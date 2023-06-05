@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -59,12 +61,20 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 
 	private Vector<String> data2;
 
-	private String SubPlayerID, SubPlayerName, SubPlayerAge, SubPlayerFrom, SubPlayerPosition,
-			SubPlayerBackNumber;
+	private String SubPlayerID, SubPlayerName, SubPlayerAge, SubPlayerFrom, SubPlayerPosition, SubPlayerBackNumber;
 
 	private JTable subPlayerTb;
 
 	private String sql;
+
+	private JPanel starterPanel;
+
+	private JPanel subPanel;
+	private JButton btnNewButton;
+
+	private JButton btnSet;
+
+	private JButton btnChange;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -135,7 +145,7 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 		// 로고2 -------------------------------------------------------------------------
 
 		// 선발 선수 패널 ----------------------------------------------------------------
-		JPanel starterPanel = new JPanel();
+		starterPanel = new JPanel();
 		starterPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		TitledBorder titledBorder = new TitledBorder(new LineBorder(Color.BLACK, 1), "선발 선수");
 		titledBorder.setTitleFont(new Font("Decodig", Font.PLAIN, 20));
@@ -221,7 +231,7 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 		}
 
 		// 후보 선수 패널 ----------------------------------------------------------------
-		JPanel subPanel = new JPanel();
+		subPanel = new JPanel();
 		TitledBorder titledBorder2 = new TitledBorder(new LineBorder(Color.BLACK, 1), "후보 선수");
 		titledBorder2.setTitleFont(new Font("Decodig", Font.PLAIN, 20));
 		subPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0)); // 패널 마진
@@ -306,13 +316,28 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 
 		subPanel.add(sp2);
 
-		JButton btnChange = new JButton("교체");
+		btnChange = new JButton("교체");
 		btnChange.setBounds(569, 450, 112, 40);
 		btnChange.addActionListener(this);
 		contentPane.add(btnChange);
 
+		btnSet = new JButton();
+		btnSet.addActionListener(this);
+		btnSet.setBackground(new Color(255, 255, 255));
+		btnSet.setBorderPainted(false);
+		btnSet.setBounds(601, 87, 60, 50);
+		contentPane.add(btnSet);
+
+		ImageIcon daicon2 = new ImageIcon("image/새로고침.png");
+		Image daimage2 = daicon2.getImage();
+		Image daimage4 = daimage2.getScaledInstance(60, 50, Image.SCALE_SMOOTH);
+		ImageIcon daicon4 = new ImageIcon(daimage4);
+		btnSet.setIcon(daicon4);
 	}
 
+	public StarterFrame(String string) {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -347,88 +372,108 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-
-		int MainSelect = mainPlayerTb.getSelectedRow();
-		int SubSelect = subPlayerTb.getSelectedRow();
-
-		// 선택 안했을 때
-		if (MainSelect < 0) {
-			JOptionPane.showMessageDialog(this, "선발 선수를 선택해주세요.");
-			return;
+		
+		if(obj == btnSet) {
+			new StarterFrame();
 		}
 
-		if (SubSelect < 0) {
-			JOptionPane.showMessageDialog(this, "후보 선수를 선택해주세요.");
-			return;
-		}
-
-		// 선발 선수 데이터 가져오기
-		try {
-			rs = stmt.executeQuery("SELECT * FROM mainplayer_tb");
-
-			for (int i = 0; i < MainSelect + 1; i++) {
-				rs.next();
-				MainPlayerID = rs.getString("MAINPLAYER_ID");
-				MainPlayerName = rs.getString("MAINPLAYER_NAME");
-				MainPlayerAge = rs.getString("MAINPLAYER_AGE");
-				MainPlayerFrom = rs.getString("MAINPLAYER_FROM");
-				MainPlayerPosition = rs.getString("MAINPLAYER_POSITHON");
-				MainPlayerBackNumber = rs.getString("MAINPLAYER_BACKNUMBER");
+		if(obj == btnChange) {
+			int MainSelect = mainPlayerTb.getSelectedRow();
+			int SubSelect = subPlayerTb.getSelectedRow();
+			
+			String MainID = null;
+			String MainName = null;
+			String MainAge = null;
+			String MainFrom = null;
+			String MainPosition = null;
+			String MainBackNumber = null;
+			String SubID = null;
+			String SubName = null;
+			String SubAge = null;
+			String SubFrom = null;
+			String SubPosition = null;
+			String SubBackNumber = null;
+			
+			// 선택 안했을 때
+			if (MainSelect < 0) {
+				JOptionPane.showMessageDialog(this, "선발 선수를 선택해주세요.");
+				return;
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-
-		// 후보 선수 데이터 가져오기
-		try {
-			rs = stmt.executeQuery("SELECT * FROM subplayer_tb");
-
-			for (int i = 0; i < SubSelect + 1; i++) {
-				rs.next();
-				SubPlayerID = rs.getString("SUBPLAYER_ID");
-				SubPlayerName = rs.getString("SUBPLAYER_NAME");
-				SubPlayerAge = rs.getString("SUBPLAYER_AGE");
-				SubPlayerFrom = rs.getString("SUBPLAYER_FROM");
-				SubPlayerPosition = rs.getString("SUBPLAYER_POSITHON");
-				SubPlayerBackNumber = rs.getString("SUBPLAYER_BACKNUMBER");
+			
+			if (SubSelect < 0) {
+				JOptionPane.showMessageDialog(this, "후보 선수를 선택해주세요.");
+				return;
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-
-		if (JOptionPane.showConfirmDialog(this, "선수를 교체하시겠습니까?", "교체", JOptionPane.YES_NO_OPTION,
-				JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-
-			// 선발, 후보 삽입
+			
+			// 선발 선수 데이터 가져오기
+			try {
+				rs = stmt.executeQuery("SELECT * FROM mainplayer_tb");
+				
+				for (int i = 0; i < MainSelect + 1; i++) {
+					rs.next();
+					MainID = rs.getString("PLAYER_ID");
+					MainName = rs.getString("PLAYER_NAME");
+					MainAge = rs.getString("PLAYER_AGE");
+					MainFrom = rs.getString("PLAYER_FROM");
+					MainPosition = rs.getString("PLAYER_POSITION");
+					MainBackNumber = rs.getString("PLAYER_BACKNUMBER");
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			// 후보 선수 데이터 가져오기
+			try {
+				rs = stmt.executeQuery("SELECT * FROM subplayer_tb");
+				
+				for (int i = 0; i < SubSelect + 1; i++) {
+					rs.next();
+					SubID = rs.getString("PLAYER_ID");
+					SubName = rs.getString("PLAYER_NAME");
+					SubAge = rs.getString("PLAYER_AGE");
+					SubFrom = rs.getString("PLAYER_FROM");
+					SubPosition = rs.getString("PLAYER_POSITION");
+					SubBackNumber = rs.getString("PLAYER_BACKNUMBER");
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			if (JOptionPane.showConfirmDialog(this, "선수를 교체하시겠습니까?", "교체", JOptionPane.YES_NO_OPTION,
+					JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+				
+				// 선발, 후보 삽입
 				try {
 					sql = "insert into mainplayer_tb\r\n"
-							+ "(SUBPLAYER_ID, SUBPLAYER_NAME, SUBPLAYER_AGE, SUBPLAYER_FROM, SUBPLAYER_POSITHON, \"SUBPLAYER_BACKNUMBER\")\r\n"
-							+ "VALUES(" + SubPlayerID + ", '" + SubPlayerName + "', " + SubPlayerAge + ", "
-							+ SubPlayerFrom + ", " + SubPlayerPosition + ", '" + SubPlayerBackNumber + "')";
+							+ "(PLAYER_ID, PLAYER_NAME, PLAYER_AGE, PLAYER_FROM, PLAYER_POSITION, PLAYER_BACKNUMBER)\r\n"
+							+ "VALUES(" + SubID + ", '" + SubName + "', " + SubAge + ", '" + SubFrom + "', '" + SubPosition
+							+ "', " + SubBackNumber + ")";
 					stmt.executeUpdate(sql);
 					
 					sql = "insert into subplayer_tb\r\n"
-							+ "(MAINPLAYER_ID, MAINPLAYER_NAME, MAINPLAYER_AGE, MAINPLAYER_FROM, MAINPLAYER_POSITHON, \"MAINPLAYER_BACKNUMBER\")\r\n"
-							+ "VALUES(" + MainPlayerID + ", '" + MainPlayerName + "', " + MainPlayerAge + ", "
-							+ MainPlayerFrom + ", " + MainPlayerPosition + ", '" + MainPlayerBackNumber + "')";
+							+ "(PLAYER_ID, PLAYER_NAME, PLAYER_AGE, PLAYER_FROM, PLAYER_POSITION, PLAYER_BACKNUMBER)\r\n"
+							+ "VALUES(" + MainID + ", '" + MainName + "', " + MainAge + ", '" + MainFrom + "', '"
+							+ MainPosition + "', " + MainBackNumber + ")";
 					stmt.executeUpdate(sql);
 					
 					// 선발, 후보 삭제
-					sql = "DELETE FROM subplayer_tb\r\n"
-							+ "WHERE SUBPLAYER_ID=" + SubPlayerID  + "";
+					sql = "DELETE FROM subplayer_tb\r\n" + "WHERE PLAYER_ID=" + SubID + "";
 					stmt.executeUpdate(sql);
 					
-					
-					sql = "DELETE FROM mainplayer_tb\r\n"
-							+ "WHERE MAINPLAYER_ID="+ MainPlayerID + "";			
+					sql = "DELETE FROM mainplayer_tb\r\n" + "WHERE PLAYER_ID=" + MainID + "";
 					stmt.executeUpdate(sql);
+					
+					JOptionPane.showMessageDialog(this, "선수가 교체되었습니다.");
+					
+					new StarterFrame();
+					dispose();
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-				
-
+			}
+			
 		}
-
+			
 	}
 }
