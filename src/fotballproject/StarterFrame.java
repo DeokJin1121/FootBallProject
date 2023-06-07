@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,7 +44,7 @@ import java.awt.Dimension;
 
 import javax.swing.JButton;
 
-public class StarterFrame extends JFrame implements MouseListener, ActionListener {
+public class StarterFrame extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 
@@ -56,9 +59,9 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 			MainPlayerBackNumber;
 
 	private JTable mainPlayerTb;
-
+	
 	private Object DBConnect;
-
+	
 	private Vector<String> data2;
 
 	private String SubPlayerID, SubPlayerName, SubPlayerAge, SubPlayerFrom, SubPlayerPosition, SubPlayerBackNumber;
@@ -73,11 +76,13 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 	private JButton btnNewButton;
 
 	private JButton btnSet;
-
 	private JButton btnChange;
+
+	private DefaultTableModel model;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+
 			public void run() {
 				try {
 					StarterFrame frame = new StarterFrame();
@@ -114,6 +119,7 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 		setTitle("선발/후보 선수 관리");
 		setBounds(100, 100, 1259, 550);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -207,7 +213,6 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 		mainPlayerTb.setFillsViewportHeight(true); // 스크롤 팬 안에 테이블 꽈차게 표시 -> 이거 없으면 배경색 설정 안됨
 		mainPlayerTb.setBackground(Color.WHITE); // 테이블 배경색 지정
 
-		mainPlayerTb.addMouseListener(this);
 		JTableHeader tableHeader = mainPlayerTb.getTableHeader(); // 테이블 헤더 값 가져오기
 		tableHeader.setBackground(new Color(0xB2CCFF)); // 테이블헤더 배경색 지정
 
@@ -293,7 +298,6 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 		subPlayerTb.setFillsViewportHeight(true); // 스크롤 팬 안에 테이블 꽈차게 표시 -> 이거 없으면 배경색 설정 안됨
 		subPlayerTb.setBackground(Color.WHITE); // 테이블 배경색 지정
 
-		subPlayerTb.addMouseListener(this);
 		JTableHeader tableHeader2 = subPlayerTb.getTableHeader(); // 테이블 헤더 값 가져오기
 		tableHeader2.setBackground(new Color(0xB2CCFF)); // 테이블헤더 배경색 지정
 
@@ -319,68 +323,18 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 		btnChange = new JButton("교체");
 		btnChange.setBounds(569, 450, 112, 40);
 		btnChange.addActionListener(this);
-		contentPane.add(btnChange);
-
-		btnSet = new JButton();
-		btnSet.addActionListener(this);
-		btnSet.setBackground(new Color(255, 255, 255));
-		btnSet.setBorderPainted(false);
-		btnSet.setBounds(601, 87, 60, 50);
-		contentPane.add(btnSet);
-
-		ImageIcon daicon2 = new ImageIcon("image/새로고침.png");
-		Image daimage2 = daicon2.getImage();
-		Image daimage4 = daimage2.getScaledInstance(60, 50, Image.SCALE_SMOOTH);
-		ImageIcon daicon4 = new ImageIcon(daimage4);
-		btnSet.setIcon(daicon4);
-	}
-
-	public StarterFrame(String string) {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+		contentPane.add(btnChange);		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-		
-		if(obj == btnSet) {
-			new StarterFrame();
-		}
 
-		if(obj == btnChange) {
+		if (obj == btnChange) {
+			
 			int MainSelect = mainPlayerTb.getSelectedRow();
 			int SubSelect = subPlayerTb.getSelectedRow();
-			
+
 			String MainID = null;
 			String MainName = null;
 			String MainAge = null;
@@ -393,22 +347,22 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 			String SubFrom = null;
 			String SubPosition = null;
 			String SubBackNumber = null;
-			
+
 			// 선택 안했을 때
 			if (MainSelect < 0) {
 				JOptionPane.showMessageDialog(this, "선발 선수를 선택해주세요.");
 				return;
 			}
-			
+
 			if (SubSelect < 0) {
 				JOptionPane.showMessageDialog(this, "후보 선수를 선택해주세요.");
 				return;
 			}
-			
+
 			// 선발 선수 데이터 가져오기
 			try {
 				rs = stmt.executeQuery("SELECT * FROM mainplayer_tb");
-				
+
 				for (int i = 0; i < MainSelect + 1; i++) {
 					rs.next();
 					MainID = rs.getString("PLAYER_ID");
@@ -421,11 +375,11 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			
+
 			// 후보 선수 데이터 가져오기
 			try {
 				rs = stmt.executeQuery("SELECT * FROM subplayer_tb");
-				
+
 				for (int i = 0; i < SubSelect + 1; i++) {
 					rs.next();
 					SubID = rs.getString("PLAYER_ID");
@@ -438,42 +392,81 @@ public class StarterFrame extends JFrame implements MouseListener, ActionListene
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			
+
 			if (JOptionPane.showConfirmDialog(this, "선수를 교체하시겠습니까?", "교체", JOptionPane.YES_NO_OPTION,
 					JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-				
+
 				// 선발, 후보 삽입
 				try {
 					sql = "insert into mainplayer_tb\r\n"
 							+ "(PLAYER_ID, PLAYER_NAME, PLAYER_AGE, PLAYER_FROM, PLAYER_POSITION, PLAYER_BACKNUMBER)\r\n"
-							+ "VALUES(" + SubID + ", '" + SubName + "', " + SubAge + ", '" + SubFrom + "', '" + SubPosition
-							+ "', " + SubBackNumber + ")";
+							+ "VALUES(" + SubID + ", '" + SubName + "', " + SubAge + ", '" + SubFrom + "', '"
+							+ SubPosition + "', " + SubBackNumber + ")";
 					stmt.executeUpdate(sql);
-					
+
 					sql = "insert into subplayer_tb\r\n"
 							+ "(PLAYER_ID, PLAYER_NAME, PLAYER_AGE, PLAYER_FROM, PLAYER_POSITION, PLAYER_BACKNUMBER)\r\n"
 							+ "VALUES(" + MainID + ", '" + MainName + "', " + MainAge + ", '" + MainFrom + "', '"
 							+ MainPosition + "', " + MainBackNumber + ")";
 					stmt.executeUpdate(sql);
-					
+
 					// 선발, 후보 삭제
 					sql = "DELETE FROM subplayer_tb\r\n" + "WHERE PLAYER_ID=" + SubID + "";
 					stmt.executeUpdate(sql);
-					
+
 					sql = "DELETE FROM mainplayer_tb\r\n" + "WHERE PLAYER_ID=" + MainID + "";
 					stmt.executeUpdate(sql);
 					
+					// 선발 선수 테이블 초기화
+					DefaultTableModel mainPlayerModel = (DefaultTableModel) mainPlayerTb.getModel();	// 선발 선수 모델 가져오기
+					mainPlayerModel.setRowCount(0); // 기존 행 모두 제거
+
+					try {
+						rs = stmt.executeQuery("SELECT * FROM mainplayer_tb");
+						while (rs.next()) {
+							// 데이터 가져와서 테이블 모델에 추가
+							MainPlayerID = rs.getString(1);
+							MainPlayerName = rs.getString(2);
+							MainPlayerAge = rs.getString(3);
+							MainPlayerFrom = rs.getString(4);
+							MainPlayerPosition = rs.getString(5);
+							MainPlayerBackNumber = rs.getString(6);
+							mainPlayerModel.addRow(new Object[] { MainPlayerID, MainPlayerName, MainPlayerAge, MainPlayerFrom,
+									MainPlayerPosition, MainPlayerBackNumber });
+
+						}
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+
+					// 후보 선수 테이블 초기화
+					DefaultTableModel subPlayerModel = (DefaultTableModel) subPlayerTb.getModel();  // 후보 선수 모델 가져오기
+					subPlayerModel.setRowCount(0); // 기존 행 모두 제거
+
+					try {
+						rs = stmt.executeQuery("SELECT * FROM subplayer_tb");
+						while (rs.next()) {
+							// 데이터 가져와서 테이블 모델에 추가
+							SubPlayerID = rs.getString(1);
+							SubPlayerName = rs.getString(2);
+							SubPlayerAge = rs.getString(3);
+							SubPlayerFrom = rs.getString(4);
+							SubPlayerPosition = rs.getString(5);
+							SubPlayerBackNumber = rs.getString(6);
+							subPlayerModel.addRow(new Object[] { SubPlayerID, SubPlayerName, SubPlayerAge, SubPlayerFrom,
+									SubPlayerPosition, SubPlayerBackNumber });
+						}
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+
 					JOptionPane.showMessageDialog(this, "선수가 교체되었습니다.");
-					
-					new StarterFrame();
-					dispose();
-					
+
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		}
-			
 	}
 }

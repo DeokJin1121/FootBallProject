@@ -57,7 +57,7 @@ public class ScheduleFrame extends JFrame implements ActionListener {
       // 달력 값을 관리하는 기본 메소드
       calManage();
       
-      setTitle(title);
+      setTitle("구단 일정");
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       setSize(1000, 600);
       setLocationRelativeTo(null);
@@ -182,10 +182,13 @@ public class ScheduleFrame extends JFrame implements ActionListener {
       add(panCenter);
       //메모장 버튼 및 레이블       
       memoday = new JLabel();
+      
       memoday.setBounds(10, 10, 200, 30);
       edgePanel2.add(memoday);
             
       tf = new JTextField();
+      tf.setHorizontalAlignment(JTextField.CENTER);
+      tf.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       tf.setBounds(60, 50, 330, 350);
       edgePanel2.add(tf);         
          

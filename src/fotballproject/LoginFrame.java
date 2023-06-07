@@ -44,7 +44,7 @@ public class LoginFrame extends JFrame implements ActionListener {
    }
 
    public LoginFrame() {
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  setTitle("로그인");
       setBounds(100, 100, 450, 300);
       setLocationRelativeTo(null);
       contentPane = new JPanel();
@@ -100,6 +100,8 @@ public class LoginFrame extends JFrame implements ActionListener {
       ImageIcon daicon3 = new ImageIcon(daimage3);
       lblLogo.setIcon(daicon3);
       
+      dispose();
+      
    }
 
    @Override
@@ -115,11 +117,13 @@ public class LoginFrame extends JFrame implements ActionListener {
       }else if (obj == inbtn) {
          if ("yeonwoonuf".equals(id.getText())&&"jyw092700".equals(pw.getText()) ) {
             MainFrame frame = new MainFrame();
-            System.exit(0);
+            dispose();
          }else if ("deokjin".equals(id.getText())&&"202045099".equals(pw.getText())) {
             MainFrame frame = new MainFrame();
+            dispose();
          }else if ("wlals".equals(id.getText())&&"5489".equals(pw.getText())) {
             MainFrame frame = new MainFrame();
+            dispose();
             
          }else if("".equals(id.getText())){
             JOptionPane.showMessageDialog(null,"아이디를 입력하세요","",JOptionPane.ERROR_MESSAGE );

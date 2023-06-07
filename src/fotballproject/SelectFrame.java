@@ -18,6 +18,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 
@@ -48,6 +50,7 @@ public class SelectFrame extends JFrame implements ActionListener {
 		setTitle("선수 검색");
 		setBounds(100, 100, 619, 302);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,11 +72,13 @@ public class SelectFrame extends JFrame implements ActionListener {
 		contentPane.add(comboBox);
 
 		taBackNum = new JTextField();
+		taBackNum.setEditable(false);
 		taBackNum.setBounds(190, 180, 192, 30);
 		contentPane.add(taBackNum);
 		taBackNum.setColumns(10);
 
 		taPositon = new JTextField();
+		taPositon.setEditable(false);
 		taPositon.setColumns(10);
 		taPositon.setBounds(190, 125, 192, 30);
 		contentPane.add(taPositon);
